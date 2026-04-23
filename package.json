@@ -1,5 +1,5 @@
 {
-  "name": "odata-mcp-v4-proxy",
+  "name": "@mindsetconsulting/odata-mcp-v4-proxy",
   "version": "0.1.0",
   "description": "Config-driven MCP proxy that exposes OData V4 APIs as MCP tools. V4 fork of odata-mcp-proxy.",
   "type": "module",
@@ -11,15 +11,35 @@
     "dist/"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MindsetConsulting/odata-mcp-v4-proxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MindsetConsulting/odata-mcp-v4-proxy/issues"
+  },
+  "homepage": "https://github.com/MindsetConsulting/odata-mcp-v4-proxy#readme",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "odata",
+    "odata-v4",
+    "sap",
+    "s4hana",
+    "btp"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "npm run build",
     "start": "node dist/index.js",
     "start:http": "MCP_TRANSPORT=http node dist/index.js",
     "start:stdio": "MCP_TRANSPORT=stdio node dist/index.js",
     "dev": "tsx watch src/index.ts",
-    "dev:northwind": "API_CONFIG_FILE=examples/northwind/northwind-config.json MCP_TRANSPORT=http tsx src/index.ts",
-    "inspect": "npx @modelcontextprotocol/inspector",
-    "inspect:http": "npx @modelcontextprotocol/inspector --cli http://localhost:4004/mcp"
+    "inspect": "npx @modelcontextprotocol/inspector"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.1",
