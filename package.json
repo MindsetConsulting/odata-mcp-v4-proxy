@@ -1,6 +1,6 @@
 {
   "name": "@mindsetconsulting/odata-mcp-v4-proxy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Config-driven MCP proxy that exposes OData V4 APIs as MCP tools. V4 fork of odata-mcp-proxy.",
   "type": "module",
   "main": "dist/index.js",
