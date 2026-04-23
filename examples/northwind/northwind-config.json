@@ -1,0 +1,92 @@
+{
+  "server": {
+    "name": "northwind-v4-mcp",
+    "version": "0.1.0",
+    "description": "Public Northwind OData V4 demo service exposed as MCP tools"
+  },
+  "apis": [
+    {
+      "name": "northwind",
+      "destination": "NORTHWIND_V4",
+      "pathPrefix": "/V4/Northwind/Northwind.svc",
+      "csrfProtected": false,
+      "entitySets": [
+        {
+          "entitySet": "Categories",
+          "description": "Northwind product categories",
+          "category": "catalog",
+          "keys": [{ "name": "CategoryID", "type": "number" }],
+          "operations": { "list": true, "get": true, "create": false, "update": false, "delete": false },
+          "filterableProperties": ["CategoryName", "Description"],
+          "selectableProperties": ["CategoryID", "CategoryName", "Description"],
+          "navigationProperties": [
+            { "name": "Products", "description": "Products in this category", "isCollection": true }
+          ]
+        },
+        {
+          "entitySet": "Customers",
+          "description": "Northwind customers",
+          "category": "customers",
+          "keys": [{ "name": "CustomerID", "type": "string" }],
+          "operations": { "list": true, "get": true, "create": false, "update": false, "delete": false },
+          "filterableProperties": ["CompanyName", "ContactName", "City", "Country"],
+          "selectableProperties": ["CustomerID", "CompanyName", "ContactName", "City", "Country", "Phone"],
+          "navigationProperties": [
+            { "name": "Orders", "description": "Orders placed by this customer", "isCollection": true }
+          ]
+        },
+        {
+          "entitySet": "Orders",
+          "description": "Northwind sales orders",
+          "category": "sales",
+          "keys": [{ "name": "OrderID", "type": "number" }],
+          "operations": { "list": true, "get": true, "create": false, "update": false, "delete": false },
+          "filterableProperties": ["CustomerID", "EmployeeID", "OrderDate", "ShippedDate", "ShipCountry"],
+          "selectableProperties": ["OrderID", "CustomerID", "EmployeeID", "OrderDate", "ShippedDate", "Freight", "ShipName", "ShipCountry"],
+          "navigationProperties": [
+            { "name": "Customer", "description": "Customer who placed this order", "isCollection": false },
+            { "name": "Employee", "description": "Employee who handled this order", "isCollection": false },
+            { "name": "Order_Details", "description": "Line items on this order", "isCollection": true }
+          ]
+        },
+        {
+          "entitySet": "Products",
+          "description": "Northwind products",
+          "category": "catalog",
+          "keys": [{ "name": "ProductID", "type": "number" }],
+          "operations": { "list": true, "get": true, "create": false, "update": false, "delete": false },
+          "filterableProperties": ["ProductName", "CategoryID", "SupplierID", "Discontinued", "UnitsInStock"],
+          "selectableProperties": ["ProductID", "ProductName", "CategoryID", "SupplierID", "UnitPrice", "UnitsInStock", "Discontinued"],
+          "navigationProperties": [
+            { "name": "Category", "description": "Category this product belongs to", "isCollection": false },
+            { "name": "Supplier", "description": "Supplier of this product", "isCollection": false }
+          ]
+        },
+        {
+          "entitySet": "Suppliers",
+          "description": "Northwind suppliers",
+          "category": "catalog",
+          "keys": [{ "name": "SupplierID", "type": "number" }],
+          "operations": { "list": true, "get": true, "create": false, "update": false, "delete": false },
+          "filterableProperties": ["CompanyName", "ContactName", "Country"],
+          "selectableProperties": ["SupplierID", "CompanyName", "ContactName", "City", "Country"],
+          "navigationProperties": [
+            { "name": "Products", "description": "Products offered by this supplier", "isCollection": true }
+          ]
+        },
+        {
+          "entitySet": "Employees",
+          "description": "Northwind employees",
+          "category": "people",
+          "keys": [{ "name": "EmployeeID", "type": "number" }],
+          "operations": { "list": true, "get": true, "create": false, "update": false, "delete": false },
+          "filterableProperties": ["LastName", "FirstName", "Title", "Country"],
+          "selectableProperties": ["EmployeeID", "LastName", "FirstName", "Title", "HireDate", "Country"],
+          "navigationProperties": [
+            { "name": "Orders", "description": "Orders handled by this employee", "isCollection": true }
+          ]
+        }
+      ]
+    }
+  ]
+}
