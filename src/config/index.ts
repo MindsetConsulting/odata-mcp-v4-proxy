@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import xsenv from '@sap/xsenv';
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, isAbsolute } from 'node:path';
